@@ -1,4 +1,4 @@
-module logger
+module github.com/locfax/logger
 
 go 1.15
 
