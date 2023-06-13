@@ -21,6 +21,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"runtime"
 	"sync"
 )
 
@@ -105,10 +106,17 @@ func Init(name string, verbose, systemLog bool, logFile io.Writer) *Logger {
 		iLogs = append(iLogs, os.Stdout)
 		wLogs = append(wLogs, os.Stdout)
 
-		tagInfo = "\033[" + "1;36m" + tagInfo + "\033[0m"
-		tagWarning = "\033[" + "1;33m" + tagWarning + "\033[0m"
-		tagError = "\033[" + "1;31m" + tagError + "\033[0m"
-		tagFatal = "\033[" + "1;41m" + tagFatal + "\033[0m"
+		if runtime.GOOS == "linux" {
+			tagInfo = "===" + tagInfo
+			tagWarning = "===" + tagWarning
+			tagError = "===" + tagError
+			tagFatal = "===" + tagFatal
+		} else {
+			tagInfo = "\033[" + "1;36m" + tagInfo + "\033[0m"
+			tagWarning = "\033[" + "1;33m" + tagWarning + "\033[0m"
+			tagError = "\033[" + "1;31m" + tagError + "\033[0m"
+			tagFatal = "\033[" + "1;41m" + tagFatal + "\033[0m"
+		}
 	}
 
 	l := Logger{
