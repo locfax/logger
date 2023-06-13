@@ -106,7 +106,7 @@ func Init(name string, verbose, systemLog bool, logFile io.Writer) *Logger {
 		iLogs = append(iLogs, os.Stdout)
 		wLogs = append(wLogs, os.Stdout)
 
-		if runtime.GOOS == "linux" {
+		if runtime.GOOS == "windows" {
 			tagInfo = "===" + tagInfo
 			tagWarning = "===" + tagWarning
 			tagError = "===" + tagError
