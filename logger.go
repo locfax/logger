@@ -107,10 +107,10 @@ func Init(name string, verbose, systemLog bool, logFile io.Writer) *Logger {
 		wLogs = append(wLogs, os.Stdout)
 
 		if runtime.GOOS == "windows" {
-			tagInfo = "===" + tagInfo
-			tagWarning = "===" + tagWarning
-			tagError = "===" + tagError
-			tagFatal = "===" + tagFatal
+			tagInfo = "[LOG] " + tagInfo
+			tagWarning = "[LOG] " + tagWarning
+			tagError = "[LOG] " + tagError
+			tagFatal = "[LOG] " + tagFatal
 		} else {
 			tagInfo = "\033[" + "1;36m" + tagInfo + "\033[0m"
 			tagWarning = "\033[" + "1;33m" + tagWarning + "\033[0m"
