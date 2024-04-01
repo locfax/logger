@@ -37,10 +37,10 @@ const (
 
 // Severity tags.
 const (
-	tagInfo    = "INFO : "
-	tagWarning = "WARN : "
-	tagError   = "ERROR: "
-	tagFatal   = "FATAL: "
+	tagInfo    = "[LOG] INFO : "
+	tagWarning = "[LOG] WARN : "
+	tagError   = "[LOG] ERROR: "
+	tagFatal   = "[LOG] FATAL: "
 )
 
 const (
@@ -106,12 +106,7 @@ func Init(name string, verbose, systemLog bool, logFile io.Writer) *Logger {
 		iLogs = append(iLogs, os.Stdout)
 		wLogs = append(wLogs, os.Stdout)
 
-		if runtime.GOOS == "windows" {
-			tagInfo = "[LOG] " + tagInfo
-			tagWarning = "[LOG] " + tagWarning
-			tagError = "[LOG] " + tagError
-			tagFatal = "[LOG] " + tagFatal
-		} else {
+		if runtime.GOOS != "windows" {
 			tagInfo = "\033[" + "1;36m" + tagInfo + "\033[0m"
 			tagWarning = "\033[" + "1;33m" + tagWarning + "\033[0m"
 			tagError = "\033[" + "1;31m" + tagError + "\033[0m"
